@@ -8,6 +8,14 @@ metadata:                     # Pod metadata (name, labels, annotations and so o
     tier: backend
     app: nginx
     release: stable
+  annotations:
+  # Annotation are used for identifying information
+    owner: aisana
+    purpose: testing
+  # Annotations can be used by Kubernetes Tools (Promethues) - Promethues scrapes all metrics from this pod
+    promethues.io/scrape: "true"
+    promethues.io/port: "8080"
+    description: "This pod is to run nginx backend application, also "
 spec:                         # Pod Specification/Contents (list of containers, volumes, image, ports and so on)  (required field)
   containers:
   - image: nginx              # Container Image
