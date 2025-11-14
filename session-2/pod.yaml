@@ -1,8 +1,14 @@
 apiVersion: v1                # Kubernetes API version used in this YAML decriptor (required field)
-kind: Pod                     # Type of Kubernetes object/resource
-metadata:                     # Pod metadata (name, labels, annotations and so on)
+kind: Pod                     # Type of Kubernetes object/resource  (required field)
+metadata:                     # Pod metadata (name, labels, annotations and so on)  (required field)
   name: nginx-pod             # Pod Name
-spec:                         # Pod Specification/Contents (list of containers, volumes, image, ports and so on)
+  labels:
+  # key must be unique, value can repeated. Labels can be applied at any time.
+    env: production
+    tier: backend
+    app: nginx
+    release: stable
+spec:                         # Pod Specification/Contents (list of containers, volumes, image, ports and so on)  (required field)
   containers:
   - image: nginx              # Container Image
     name: nginx-container     # Container Name
