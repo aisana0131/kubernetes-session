@@ -12,5 +12,6 @@ spec:
   - name: apache
     image: paketobuildpacks/httpd:0.7
     ports:
-    - containerPort: 80
+    - protocol: TCP
+      containerPort: 80
  
