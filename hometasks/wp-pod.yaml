@@ -15,4 +15,14 @@ spec:
     ports:
     - protocol: TCP
       containerPort: 80
+    env:
+    - name: WORDPRESS_DB_HOST
+      value: mysql.backend.svc.cluster.local
+    - name: WORDPRESS_DB_USER
+      value: root
+    - name: WORDPRESS_DB_PASSWORD
+      value: mysecurepassword
+    - name: WORDPRESS_DB_NAME
+      value: wordpress
+
 
