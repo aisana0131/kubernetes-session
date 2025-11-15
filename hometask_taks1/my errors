@@ -1,0 +1,24 @@
+$ kubectl apply -f apache-pod.yaml
+The Pod "apache-pod" is invalid: spec: Forbidden: pod updates may not change fields other than `spec.containers[*].image`,`spec.initContainers[*].image`,`spec.activeDeadlineSeconds`,`spec.tolerations` (only additions to existing tolerations),`spec.terminationGracePeriodSeconds` (allow it to be set to 1 if it was previously negative)
+  core.PodSpec{
+        Volumes:        {{Name: "kube-api-access-dkz78", VolumeSource: {Projected: &{Sources: {{ServiceAccountToken: &{ExpirationSeconds: 3607, Path: "token"}}, {ConfigMap: &{LocalObjectReference: {Name: "kube-root-ca.crt"}, Items: {{Key: "ca.crt", Path: "ca.crt"}}}}, {DownwardAPI: &{Items: {{Path: "namespace", FieldRef: &{APIVersion: "v1", FieldPath: "metadata.namespace"}}}}}}, DefaultMode: &420}}}},
+        InitContainers: nil,
+        Containers: []core.Container{      
+                {
+                        ... // 3 identical fields
+                        Args:       nil,   
+                        WorkingDir: "",    
+-                       Ports:      nil,   
++                       Ports:      []core.ContainerPort{{ContainerPort: 80, Protocol: "TCP"}},
+                        EnvFrom:    nil,   
+                        Env:        nil,   
+                        ... // 16 identical fields
+                },
+        },
+        EphemeralContainers: nil,
+        RestartPolicy:       "Always",
+        ... // 29 identical fields
+  }
+
+
+  Solution: sometimes when new changes cannot appy it is better to delete a pod and create again.
